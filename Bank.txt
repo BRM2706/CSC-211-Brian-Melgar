@@ -1,0 +1,43 @@
+public class Bank {
+    private double amount;              
+    private double[] transactions;      
+    private int count;                 
+    
+    public Bank(int size) {
+        amount = 0.0;
+        transactions = new double[size]; 
+        count = 0;
+    }
+    public void deposit(double value) {
+        amount += value;
+        if (count < transactions.length) {
+            transactions[count] = value;
+            count++;
+        }
+    }
+    public void withdraw(double value) {
+        amount -= value;
+        if (count < transactions.length) {
+            transactions[count] = -value;
+            count++;
+        }
+    }
+    public void listInteractions() {
+        System.out.println("Transactions:");
+        for (int i = 0; i < count; i++) {
+            System.out.println(transactions[i]);
+        }
+    }
+    public double getBalance() {
+        return amount;
+    }
+    public static void main(String[] args) {
+        Bank myBank = new Bank(10);  
+        myBank.deposit(700);
+        myBank.withdraw(500);
+        myBank.deposit(200);
+
+        System.out.println("Balance: " + myBank.getBalance());
+        myBank.listInteractions();
+    }
+}
